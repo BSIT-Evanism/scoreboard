@@ -4,8 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration
-{
+return new class extends Migration {
     /**
      * Run the migrations.
      */
@@ -19,6 +18,11 @@ return new class extends Migration
             $table->string('password');
             $table->rememberToken();
             $table->timestamps();
+            $table->unsignedBigInteger('role_id')->nullable(); // Add this line
+            $table->foreign('role_id')
+                ->references('id')
+                ->on('roles')
+                ->onDelete('SET NULL'); // Consider the implications of onDelete
         });
 
         Schema::create('password_reset_tokens', function (Blueprint $table) {
