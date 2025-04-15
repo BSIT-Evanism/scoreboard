@@ -13,6 +13,8 @@ use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 use Illuminate\Support\Facades\Hash;
+use Filament\Tables\Actions\ExportBulkAction;
+use App\Filament\Exports\UserExporter;
 
 class UserResource extends Resource
 {
@@ -86,6 +88,10 @@ class UserResource extends Resource
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
                     Tables\Actions\DeleteBulkAction::make(),
+                    ExportBulkAction::make()
+                        ->label('Export Selected')
+                        ->icon('heroicon-o-document-arrow-down')
+                        ->exporter(UserExporter::class),
                 ]),
             ]);
     }
