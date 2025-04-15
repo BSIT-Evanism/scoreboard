@@ -12,12 +12,7 @@ const mainNavItems: NavItem[] = [
         title: 'Dashboard',
         href: '/dashboard',
         icon: LayoutDashboard,
-    },
-    {
-        title: 'Import/Export',
-        href: '/dashboard',
-        icon: FileText,
-    },
+    }
 ];
 
 export function AppSidebar() {
